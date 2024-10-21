@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f3e5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    input {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      border: 2px solid #8e24aa;
+      border-radius: 5px;
+      background-color: #f8bbd0;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #42a5f5;
+      color: white;
+    }
+    button:active {
+      background-color: #1e88e5;
+    }
+    .message {
+      margin: 10px;
+      font-size: 18px;
+      color: #6a1b9a;
+    }
+  </style>
+  <title>Mobile Number Validator</title>
+</head>
+<body>
+  <div class="container">
+    <input type="text" id="mobileNumber" placeholder="Enter mobile number">
+    <button id="validateButton">Validate</button>
+    <div class="message" id="validationMessage"></div>
+  </div>
+
+  <script>
+    document.getElementById('validateButton').addEventListener('click', () => {
+      const mobileNumber = document.getElementById('mobileNumber').value;
+      const validationMessage = document.getElementById('validationMessage');
+      const regex = /^[789]\d{9}$/;
+
+      if (regex.test(mobileNumber)) {
+        validationMessage.textContent = 'Valid mobile number';
+        validationMessage.style.color = 'green';
+      } else {
+        validationMessage.textContent = 'Invalid mobile number';
+        validationMessage.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>

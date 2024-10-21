@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Analyzer</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #ffecd2;
+      background: -webkit-linear-gradient(to right, #fcb69f, #ffecd2);
+      background: linear-gradient(to right, #fcb69f, #ffecd2);
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      font-family: 'Roboto', sans-serif;
+    }
+    button {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px 0;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    button:hover {
+      background-color: #e35d5b;
+      transform: scale(1.05);
+    }
+    .result {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #333;
+    }
+    .color-picker {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+    }
+    .color-picker label {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Text Analyzer</h1>
+    <textarea id="textInput" placeholder="Enter your text here..."></textarea>
+    <button id="analyzeButton">Analyze Text</button>
+    <div class="result" id="alphabetsCount">Number of alphabets: 0</div>
+    <div class="result" id="digitsCount">Number of digits: 0</div>
+    <div class="result" id="specialCharsCount">Number of special characters: 0</div>
+    <div class="color-picker">
+      <label for="bgColorPicker">Background Color:</label>
+      <input type="color" id="bgColorPicker">
+    </div>
+    <div class="color-picker">
+      <label for="fgColorPicker">Foreground Color:</label>
+      <input type="color" id="fgColorPicker">
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('analyzeButton').addEventListener('click', () => {
+      const text = document.getElementById('textInput').value;
+      const alphabets = text.match(/[a-zA-Z]/g) || [];
+      const digits = text.match(/[0-9]/g) || [];
+      const specialChars = text.match(/[^a-zA-Z0-9\s]/g) || [];
+
+      document.getElementById('alphabetsCount').textContent = `Number of alphabets: ${alphabets.length}`;
+      document.getElementById('digitsCount').textContent = `Number of digits: ${digits.length}`;
+      document.getElementById('specialCharsCount').textContent = `Number of special characters: ${specialChars.length}`;
+    });
+
+    document.getElementById('bgColorPicker').addEventListener('input', (event) => {
+      document.getElementById('textInput').style.backgroundColor = event.target.value;
+    });
+
+    document.getElementById('fgColorPicker').addEventListener('input', (event) => {
+      document.getElementById('textInput').style.color = event.target.value;
+    });
+  </script>
+</body>
+</html>

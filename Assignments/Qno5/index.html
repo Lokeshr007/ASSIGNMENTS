@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #d1c4e9;
+      margin: 0;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #673ab7;
+      border-radius: 5px;
+      width: 90%;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 0;
+      border: none;
+      background-color: #673ab7;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5e35b1;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #673ab7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Info</h1>
+    <input type="text" id="rollNumber" placeholder="Enter Roll Number (e.g., ES19CS01)">
+    <button onclick="displayStudentInfo()">Display Info</button>
+    <div class="result" id="studentInfo"></div>
+  </div>
+
+  <script>
+    function displayStudentInfo() {
+      const rollNumber = document.getElementById('rollNumber').value.toUpperCase();
+      const studentInfo = document.getElementById('studentInfo');
+
+      if (rollNumber.length !== 8) {
+        studentInfo.textContent = 'Invalid roll number format';
+        return;
+      }
+
+      const yearMap = {
+        '22': 'Third year',
+        '21': 'Second year',
+        '20': 'Third year',
+        '19': 'Final year',
+        '18': 'Final year',
+      };
+
+      const branchMap = {
+        'CS': 'CSE',
+        'EC': 'ECE',
+        'AG': 'AGRI',
+        'EE': 'EEE',
+        'AD': 'AIDS'
+      };
+
+      const yearCode = rollNumber.slice(2, 4);
+      const branchCode = rollNumber.slice(4, 6);
+
+      const yearOfStudy = yearMap[yearCode] || 'Unknown';
+      const branch = branchMap[branchCode] || 'Unknown';
+
+      studentInfo.textContent = `Student belongs to ${yearOfStudy} ${branch}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Date Difference Calculator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    }
+    .container {
+      text-align: center;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    input[type="date"] {
+      margin: 10px;
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #f57c00;
+      border-radius: 10px;
+      background-color: #ffecb3;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s;
+    }
+    input[type="date"]:focus {
+      border-color: #ff6f00;
+      outline: none;
+    }
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #ef6c00;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    button:hover {
+      background-color: #e65100;
+      transform: scale(1.05);
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #424242;
+      background-color: #ffe082;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Date Difference Calculator</h1>
+    <input type="date" id="date1">
+    <input type="date" id="date2">
+    <button onclick="calculateDays()">Calculate Days</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateDays() {
+      const date1 = new Date(document.getElementById('date1').value);
+      const date2 = new Date(document.getElementById('date2').value);
+
+      if (isNaN(date1) || isNaN(date2)) {
+        document.getElementById('result').textContent = 'Please select both dates.';
+        return;
+      }
+
+      const timeDiff = Math.abs(date2 - date1);
+      const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+      document.getElementById('result').textContent = `Number of days between selected dates: ${diffDays}`;
+    }
+  </script>
+</body>
+</html>
